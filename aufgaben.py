@@ -351,7 +351,13 @@ def aufgabe_055_primzahlen_bis(limit: int) -> list[int]:
 # Gruppe: Murat, Tom, Houssin
 def aufgabe_056_ggt(a: int, b: int) -> int:
     """Berechne den größten gemeinsamen Teiler."""
-    pass
+    a = abs(a)
+    b = abs(b)
+
+    while b != 0:
+        a, b = b, a % b
+
+    return a
 
 
 # Gruppe: Murat, Tom, Houssin
