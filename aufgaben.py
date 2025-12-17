@@ -258,8 +258,13 @@ def aufgabe_040_count_letters(text: str) -> dict[str, int]:
 
 # Gruppe: Ljubica, Alex
 def aufgabe_041_group_by_length(worte: list[str]) -> dict[int, list[str]]:
-    """Gruppiere Wörter nach ihrer Länge."""
-    pass
+    grouped = {}
+    for wort in worte:
+        length = len(wort)
+        if length not in grouped:
+            grouped[length] = []
+        grouped[length].append(wort)
+    return grouped
 
 
 # Gruppe: Ljubica, Alex
