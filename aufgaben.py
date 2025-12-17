@@ -20,7 +20,8 @@ def aufgabe_002_zaehle_vokale(text: str) -> int:
 
 def aufgabe_003_ist_palindrom(text: str) -> bool:
     """Prüfe, ob der Text ein Palindrom ist (Groß/Klein ignorieren)."""
-    pass
+    text = text.lower()
+    return text == text[::-1]
 
 
 def aufgabe_004_zu_grossbuchstaben(text: str) -> str:
