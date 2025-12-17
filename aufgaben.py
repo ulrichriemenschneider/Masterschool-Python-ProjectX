@@ -11,7 +11,7 @@ from typing import Any, Optional
 # Gruppe: heidi, atila
 def aufgabe_001_spiegle_text(text: str) -> str:
     """Gib den Text rückwärts zurück."""
-    pass
+    return text[::-1]
 
 
 # Gruppe: heidi, atila
