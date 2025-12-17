@@ -400,49 +400,97 @@ def aufgabe_062_zahlenformat(n: float, nachkommastellen: int) -> str:
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_063_clamp(wert: float, minimum: float, maximum: float) -> float:
     """Begrenze wert auf den Bereich [minimum, maximum]."""
-    pass
+    if wert < minimum:
+        return minimum
+    if wert > maximum:
+        return maximum
+    return wert
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_064_normiere(werte: list[float]) -> list[float]:
     """Skaliere Werte in den Bereich 0..1 (min-max-Normierung)."""
-    pass
+    if not werte:
+        return []
+
+    minimum = min(werte)
+    maximum = max(werte)
+
+    # Sonderfall: alle Werte sind gleich
+    if minimum == maximum:
+        return [0.0 for _ in werte]
+
+    return [(x - minimum) / (maximum - minimum) for x in werte]
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_065_skaliere(werte: list[float], faktor: float) -> list[float]:
     """Multipliziere jeden Wert mit faktor."""
-    pass
+    result_list = []
+    for item in werte:
+        result_list.append(item * faktor)
+    return result_list
+
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_066_moving_average(werte: list[float], fenster: int) -> list[float]:
     """Berechne gleitende Durchschnitte mit Fenstergröße fenster."""
-    pass
+    if fenster <= 0:
+        raise ValueError("fenster muss größer als 0 sein")
+
+    if fenster > len(werte):
+        return []
+
+    result = []
+    for i in range(len(werte) - fenster + 1):
+        window = werte[i:i + fenster]
+        result.append(sum(window) / fenster)
+
+    return result
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_067_linear_map(wert: float, alt_min: float, alt_max: float, neu_min: float, neu_max: float) -> float:
     """Mappe wert linear vom Bereich alt_min..alt_max nach neu_min..neu_max."""
-    pass
+    if alt_min == alt_max:
+        raise ValueError("alt_min und alt_max dürfen nicht gleich sein")
+
+    return neu_min + (wert - alt_min) * (neu_max - neu_min) / (alt_max - alt_min)
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_068_countdown(n: int) -> list[int]:
     """Gib eine Liste von n bis 0 zurück."""
-    pass
+    if n < 0:
+        raise ValueError("n muss >= 0 sein")
+
+    result_list = []
+    counter = n
+    for i in range(n+1):
+        result_list.append(counter)
+        counter -= 1
+    return result_list
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_069_repeat_text(text: str, anzahl: int) -> str:
     """Wiederhole einen Text anzahl-mal hintereinander."""
-    pass
+    output_string = text*anzahl
+    return output_string
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_070_summenliste(werte: list[int]) -> list[int]:
     """Gib die kumulative Summe der Werte zurück."""
-    pass
+    result = []
+    laufende_summe = 0
+
+    for wert in werte:
+        laufende_summe += wert
+        result.append(laufende_summe)
+
+    return result
 
 
 # Gruppe: Fabienne, Posh, Max
