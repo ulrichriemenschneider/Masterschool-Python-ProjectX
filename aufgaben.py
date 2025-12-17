@@ -283,9 +283,11 @@ def aufgabe_043_dict_without_keys(data: dict[str, int], keys: list[str]) -> dict
     return {k: v for k, v in data.items() if k not in keys}
 
 # Gruppe: Ljubica, Alex
-def aufgabe_044_find_key_by_value(data: dict[str, int], value: int) -> Optional[str]:
-    """Finde den ersten Schlüssel, dessen Wert value entspricht."""
-    pass
+def aufgabe_044_find_key_by_value(data, value):
+    for k, v in data.items():
+        if v == value:
+            return k
+    return None
 
 
 # Gruppe: Ljubica, Alex
