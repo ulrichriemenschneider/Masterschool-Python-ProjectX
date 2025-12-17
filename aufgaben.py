@@ -562,13 +562,22 @@ def aufgabe_081_filter_worte_laenge(worte: list[str], minimum: int) -> list[str]
 # Gruppe: German, matthias
 def aufgabe_082_join_ohne_letztes(worte: list[str]) -> str:
     """Verbinde Wörter mit Komma, ersetze das letzte Komma durch ' und '."""
-    pass
+    if not worte:
+        return ""
+    if len(worte) == 1:
+        return worte[0]
+    return ", ".join(worte[:-1]) + " und " + worte[-1]
 
 
 # Gruppe: German, matthias
 def aufgabe_083_count_characters_ignore_case(text: str) -> dict[str, int]:
     """Zähle Zeichenhäufigkeiten ohne zwischen Groß/Klein zu unterscheiden."""
-    pass
+    haeufigkeit = {}
+
+    for zeichen in text.lower():
+        haeufigkeit[zeichen] = haeufigkeit.get(zeichen, 0) + 1
+
+    return haeufigkeit
 
 
 # Gruppe: German, matthias
