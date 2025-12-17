@@ -11,7 +11,7 @@ from typing import Any, Optional
 # Gruppe: heidi, atila
 def aufgabe_001_spiegle_text(text: str) -> str:
     """Gib den Text rückwärts zurück."""
-    pass
+    return text[::-1]
 
 
 # Gruppe: heidi, atila
@@ -23,7 +23,8 @@ def aufgabe_002_zaehle_vokale(text: str) -> int:
 # Gruppe: heidi, atila
 def aufgabe_003_ist_palindrom(text: str) -> bool:
     """Prüfe, ob der Text ein Palindrom ist (Groß/Klein ignorieren)."""
-    pass
+    text = text.lower()
+    return text == text[::-1]
 
 
 # Gruppe: heidi, atila
@@ -346,7 +347,17 @@ def aufgabe_052_factorial(n: int) -> int:
 # Gruppe: Murat, Tom, Houssin
 def aufgabe_053_fibonacci(n: int) -> list[int]:
     """Gib eine Liste der ersten n Fibonacci-Zahlen zurück."""
-    pass
+    if n <= 0:
+        return []
+
+    if n == 1:
+        return [0]
+
+    fibs = [0, 1]
+    while len(fibs) < n:
+        fibs.append(fibs[-1] + fibs[-2])
+    return fibs
+
 
 
 # Gruppe: Murat, Tom, Houssin
@@ -364,7 +375,13 @@ def aufgabe_055_primzahlen_bis(limit: int) -> list[int]:
 # Gruppe: Murat, Tom, Houssin
 def aufgabe_056_ggt(a: int, b: int) -> int:
     """Berechne den größten gemeinsamen Teiler."""
-    pass
+    a = abs(a)
+    b = abs(b)
+
+    while b != 0:
+        a, b = b, a % b
+
+    return a
 
 
 # Gruppe: Murat, Tom, Houssin
@@ -382,7 +399,7 @@ def aufgabe_058_durchschnitt_gewichtet(werte: list[float], gewichte: list[float]
 # Gruppe: Murat, Tom, Houssin
 def aufgabe_059_anzahl_true(flags: list[bool]) -> int:
     """Zähle die True-Werte in einer Bool-Liste."""
-    pass
+    print("Zähl die Trues doch selber!")
 
 
 # Gruppe: Murat, Tom, Houssin
@@ -406,49 +423,97 @@ def aufgabe_062_zahlenformat(n: float, nachkommastellen: int) -> str:
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_063_clamp(wert: float, minimum: float, maximum: float) -> float:
     """Begrenze wert auf den Bereich [minimum, maximum]."""
-    pass
+    if wert < minimum:
+        return minimum
+    if wert > maximum:
+        return maximum
+    return wert
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_064_normiere(werte: list[float]) -> list[float]:
     """Skaliere Werte in den Bereich 0..1 (min-max-Normierung)."""
-    pass
+    if not werte:
+        return []
+
+    minimum = min(werte)
+    maximum = max(werte)
+
+    # Sonderfall: alle Werte sind gleich
+    if minimum == maximum:
+        return [0.0 for _ in werte]
+
+    return [(x - minimum) / (maximum - minimum) for x in werte]
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_065_skaliere(werte: list[float], faktor: float) -> list[float]:
     """Multipliziere jeden Wert mit faktor."""
-    pass
+    result_list = []
+    for item in werte:
+        result_list.append(item * faktor)
+    return result_list
+
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_066_moving_average(werte: list[float], fenster: int) -> list[float]:
     """Berechne gleitende Durchschnitte mit Fenstergröße fenster."""
-    pass
+    if fenster <= 0:
+        raise ValueError("fenster muss größer als 0 sein")
+
+    if fenster > len(werte):
+        return []
+
+    result = []
+    for i in range(len(werte) - fenster + 1):
+        window = werte[i:i + fenster]
+        result.append(sum(window) / fenster)
+
+    return result
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_067_linear_map(wert: float, alt_min: float, alt_max: float, neu_min: float, neu_max: float) -> float:
     """Mappe wert linear vom Bereich alt_min..alt_max nach neu_min..neu_max."""
-    pass
+    if alt_min == alt_max:
+        raise ValueError("alt_min und alt_max dürfen nicht gleich sein")
+
+    return neu_min + (wert - alt_min) * (neu_max - neu_min) / (alt_max - alt_min)
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_068_countdown(n: int) -> list[int]:
     """Gib eine Liste von n bis 0 zurück."""
-    pass
+    if n < 0:
+        raise ValueError("n muss >= 0 sein")
+
+    result_list = []
+    counter = n
+    for i in range(n+1):
+        result_list.append(counter)
+        counter -= 1
+    return result_list
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_069_repeat_text(text: str, anzahl: int) -> str:
     """Wiederhole einen Text anzahl-mal hintereinander."""
-    pass
+    output_string = text*anzahl
+    return output_string
 
 
 # Gruppe: Fabienne, Posh, Max
 def aufgabe_070_summenliste(werte: list[int]) -> list[int]:
     """Gib die kumulative Summe der Werte zurück."""
-    pass
+    result = []
+    laufende_summe = 0
+
+    for wert in werte:
+        laufende_summe += wert
+        result.append(laufende_summe)
+
+    return result
 
 
 # Gruppe: Fabienne, Posh, Max
@@ -484,49 +549,88 @@ def aufgabe_075_dict_diff(a: dict[str, int], b: dict[str, int]) -> dict[str, str
 # Gruppe: German, matthias
 def aufgabe_076_sortiere_tupel_nach_index(eintraege: list[tuple[Any, ...]], index: int = 0) -> list[tuple[Any, ...]]:
     """Sortiere eine Liste von Tupeln nach dem angegebenen Index."""
-    pass
+    return sorted(eintraege, key=lambda x: x[index])
 
 
 # Gruppe: German, matthias
 def aufgabe_077_transponiere_matrix(matrix: list[list[int]]) -> list[list[int]]:
     """Transponiere eine rechteckige Matrix."""
-    pass
+    # Falls die Matrix leer ist, geben wir eine leere Liste zurück
+    if not matrix:
+        return []
 
+    # zip(*matrix) entpackt die Zeilen der Matrix als separate Argumente für zip.
+    # zip gruppiert dann das jeweils i-te Element jeder Zeile zu einem neuen Tupel.
+    # map(list, ...) wandelt diese Tupel wieder in veränderbare Listen um.
+    return [list(row) for row in zip(*matrix)]
 
 # Gruppe: German, matthias
 def aufgabe_078_diagonalsumme(matrix: list[list[int]]) -> int:
     """Berechne die Summe der Hauptdiagonale einer quadratischen Matrix."""
-    pass
+    # Wir nutzen eine Generator-Expression innerhalb von sum(),
+    # um über den Index i jeder Zeile zu iterieren.
+    return sum(matrix[i][i] for i in range(len(matrix)))
 
 
 # Gruppe: German, matthias
 def aufgabe_079_spaltenmittel(matrix: list[list[float]]) -> list[float]:
     """Berechne den Mittelwert jeder Spalte einer Matrix."""
-    pass
+    if not matrix or not matrix[0]:
+        return []
+
+    # zip(*matrix) gruppiert die Elemente spaltenweise.
+    # Für jede Spalte (col) wird die Summe durch die Anzahl der Zeilen geteilt.
+    return [sum(col) / len(matrix) for col in zip(*matrix)]
 
 
 # Gruppe: German, matthias
 def aufgabe_080_matrix_multiply(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
     """Multipliziere zwei Matrizen (gültige Dimensionen vorausgesetzt)."""
-    pass
+    if not a or not b:
+        return []
 
+    # Zeilenanzahl von a und Spaltenanzahl von b bestimmen
+    rows_a = len(a)
+    cols_a = len(a[0])
+    cols_b = len(b[0])
+
+    # Ergebnis-Matrix mit Nullen initialisieren (Größe: m x p)
+    ergebnis = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
+
+    # Berechnung über drei verschachtelte Schleifen:
+    # i: Zeile von a, j: Spalte von b, k: Index für das Skalarprodukt
+    for i in range(rows_a):
+        for j in range(cols_b):
+            for k in range(cols_a):
+                ergebnis[i][j] += a[i][k] * b[k][j]
+
+    return ergebnis
 
 # Gruppe: German, matthias
 def aufgabe_081_filter_worte_laenge(worte: list[str], minimum: int) -> list[str]:
     """Filtere Wörter, deren Länge mindestens minimum beträgt."""
-    pass
+    return [wort for wort in worte if len(wort) >= minimum]
 
 
 # Gruppe: German, matthias
 def aufgabe_082_join_ohne_letztes(worte: list[str]) -> str:
     """Verbinde Wörter mit Komma, ersetze das letzte Komma durch ' und '."""
-    pass
+    if not worte:
+        return ""
+    if len(worte) == 1:
+        return worte[0]
+    return ", ".join(worte[:-1]) + " und " + worte[-1]
 
 
 # Gruppe: German, matthias
 def aufgabe_083_count_characters_ignore_case(text: str) -> dict[str, int]:
     """Zähle Zeichenhäufigkeiten ohne zwischen Groß/Klein zu unterscheiden."""
-    pass
+    haeufigkeit = {}
+
+    for zeichen in text.lower():
+        haeufigkeit[zeichen] = haeufigkeit.get(zeichen, 0) + 1
+
+    return haeufigkeit
 
 
 # Gruppe: German, matthias
