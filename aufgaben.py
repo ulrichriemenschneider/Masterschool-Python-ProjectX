@@ -232,8 +232,12 @@ def aufgabe_037_dict_values_sum(data: dict[str, int]) -> int:
 
 # Gruppe: Ljubica, Alex
 def aufgabe_038_invert_dict(data: dict[str, str]) -> dict[str, str]:
-    """Tausche Schlüssel und Werte (Fehler bei Duplikaten klären)."""
-    pass
+    inverted = {}
+    for key, value in data.items():
+        if value in inverted:
+            raise ValueError(f"Doppelter Wert gefunden: {value}")
+        inverted[value] = key
+    return inverted
 
 
 # Gruppe: Ljubica, Alex
