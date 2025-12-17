@@ -233,80 +233,103 @@ def aufgabe_037_dict_values_sum(data: dict[str, int]) -> int:
 
 # Gruppe: Ljubica, Alex
 def aufgabe_038_invert_dict(data: dict[str, str]) -> dict[str, str]:
-    """Tausche Schlüssel und Werte (Fehler bei Duplikaten klären)."""
-    pass
+    inverted = {}
+    for key, value in data.items():
+        if value in inverted:
+            raise ValueError(f"Doppelter Wert gefunden: {value}")
+        inverted[value] = key
+    return inverted
 
 
 # Gruppe: Ljubica, Alex
-def aufgabe_039_merge_dicts(a: dict[str, Any], b: dict[str, Any]) -> dict[str, Any]:
-    """Führe zwei Dicts zusammen, b überschreibt a bei Konflikten."""
-    pass
-
+def aufgabe_039_merge_dicts(a: dict, b: dict) -> dict:
+    result = a.copy()
+    result.update(b)
+    return result
 
 # Gruppe: Ljubica, Alex
 def aufgabe_040_count_letters(text: str) -> dict[str, int]:
-    """Zähle, wie oft jeder Buchstabe im Text vorkommt (case-insensitive)."""
-    pass
+    text = text.lower()
+    counts = {}
+    for char in text:
+        if char.isalpha():  # samo slova
+            counts[char] = counts.get(char, 0) + 1
+    return counts
 
 
 # Gruppe: Ljubica, Alex
 def aufgabe_041_group_by_length(worte: list[str]) -> dict[int, list[str]]:
-    """Gruppiere Wörter nach ihrer Länge."""
-    pass
+    grouped = {}
+    for wort in worte:
+        length = len(wort)
+        if length not in grouped:
+            grouped[length] = []
+        grouped[length].append(wort)
+    return grouped
 
 
 # Gruppe: Ljubica, Alex
 def aufgabe_042_word_frequency(worte: list[str]) -> dict[str, int]:
-    """Erstelle eine Häufigkeitstabelle für Wörter."""
-    pass
+    freq = {}
+    for wort in worte:
+        if wort in freq:
+            freq[wort] += 1
+        else:
+            freq[wort] = 1
+    return freq
 
 
 # Gruppe: Ljubica, Alex
 def aufgabe_043_dict_without_keys(data: dict[str, int], keys: list[str]) -> dict[str, int]:
-    """Gib ein neues Dict ohne die angegebenen Schlüssel zurück."""
-    pass
+    return {k: v for k, v in data.items() if k not in keys}
+
+# Gruppe: Ljubica, Alex
+def aufgabe_044_find_key_by_value(data, value):
+    for k, v in data.items():
+        if v == value:
+            return k
+    return None
 
 
 # Gruppe: Ljubica, Alex
-def aufgabe_044_find_key_by_value(data: dict[str, int], value: int) -> Optional[str]:
-    """Finde den ersten Schlüssel, dessen Wert value entspricht."""
-    pass
+def aufgabe_045_safe_get(data, path):
+    current = data
+    for key in path:
+        if isinstance(current, dict) and key in current:
+            current = current[key]
+        else:
+            return None
+    return current
 
 
 # Gruppe: Ljubica, Alex
-def aufgabe_045_safe_get(data: dict[str, Any], path: list[str]) -> Optional[Any]:
-    """Greife sicher auf verschachtelte Dicts zu, None wenn Pfad fehlt."""
-    pass
-
-
-# Gruppe: Ljubica, Alex
-def aufgabe_046_set_union(a: set[int], b: set[int]) -> set[int]:
-    """Vereinigung zweier Sets zurückgeben."""
-    pass
+def aufgabe_046_set_union(a, b):
+    return a | b
 
 
 # Gruppe: Ljubica, Alex
 def aufgabe_047_set_intersection(a: set[int], b: set[int]) -> set[int]:
-    """Schnittmenge zweier Sets zurückgeben."""
-    pass
+    return a & b
 
 
 # Gruppe: Ljubica, Alex
 def aufgabe_048_set_difference(a: set[int], b: set[int]) -> set[int]:
-    """Differenzmenge a - b zurückgeben."""
-    pass
-
+    return a - b
 
 # Gruppe: Ljubica, Alex
 def aufgabe_049_remove_duplicates_preserve_order(werte: list[str]) -> list[str]:
-    """Entferne doppelte Einträge aus einer Stringliste, Reihenfolge behalten."""
-    pass
+    seen = set()
+    result = []
+    for w in werte:
+        if w not in seen:
+            seen.add(w)
+            result.append(w)
+    return result
 
 
 # Gruppe: Ljubica, Alex
-def aufgabe_050_has_duplicates(werte: list[Any]) -> bool:
-    """Prüfe, ob die Liste doppelte Elemente enthält."""
-    pass
+def aufgabe_050_has_duplicates(werte: list) -> bool:
+    return len(werte) != len(set(werte))
 
 
 # Gruppe: Murat, Tom, Houssin
