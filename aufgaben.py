@@ -461,37 +461,67 @@ def aufgabe_075_dict_diff(a: dict[str, int], b: dict[str, int]) -> dict[str, str
 # Gruppe: German, matthias
 def aufgabe_076_sortiere_tupel_nach_index(eintraege: list[tuple[Any, ...]], index: int = 0) -> list[tuple[Any, ...]]:
     """Sortiere eine Liste von Tupeln nach dem angegebenen Index."""
-    pass
+    return sorted(eintraege, key=lambda x: x[index])
 
 
 # Gruppe: German, matthias
 def aufgabe_077_transponiere_matrix(matrix: list[list[int]]) -> list[list[int]]:
     """Transponiere eine rechteckige Matrix."""
-    pass
+    # Falls die Matrix leer ist, geben wir eine leere Liste zurück
+    if not matrix:
+        return []
 
+    # zip(*matrix) entpackt die Zeilen der Matrix als separate Argumente für zip.
+    # zip gruppiert dann das jeweils i-te Element jeder Zeile zu einem neuen Tupel.
+    # map(list, ...) wandelt diese Tupel wieder in veränderbare Listen um.
+    return [list(row) for row in zip(*matrix)]
 
 # Gruppe: German, matthias
 def aufgabe_078_diagonalsumme(matrix: list[list[int]]) -> int:
     """Berechne die Summe der Hauptdiagonale einer quadratischen Matrix."""
-    pass
+    # Wir nutzen eine Generator-Expression innerhalb von sum(),
+    # um über den Index i jeder Zeile zu iterieren.
+    return sum(matrix[i][i] for i in range(len(matrix)))
 
 
 # Gruppe: German, matthias
 def aufgabe_079_spaltenmittel(matrix: list[list[float]]) -> list[float]:
     """Berechne den Mittelwert jeder Spalte einer Matrix."""
-    pass
+    if not matrix or not matrix[0]:
+        return []
+
+    # zip(*matrix) gruppiert die Elemente spaltenweise.
+    # Für jede Spalte (col) wird die Summe durch die Anzahl der Zeilen geteilt.
+    return [sum(col) / len(matrix) for col in zip(*matrix)]
 
 
 # Gruppe: German, matthias
 def aufgabe_080_matrix_multiply(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
     """Multipliziere zwei Matrizen (gültige Dimensionen vorausgesetzt)."""
-    pass
+    if not a or not b:
+        return []
 
+    # Zeilenanzahl von a und Spaltenanzahl von b bestimmen
+    rows_a = len(a)
+    cols_a = len(a[0])
+    cols_b = len(b[0])
+
+    # Ergebnis-Matrix mit Nullen initialisieren (Größe: m x p)
+    ergebnis = [[0 for _ in range(cols_b)] for _ in range(rows_a)]
+
+    # Berechnung über drei verschachtelte Schleifen:
+    # i: Zeile von a, j: Spalte von b, k: Index für das Skalarprodukt
+    for i in range(rows_a):
+        for j in range(cols_b):
+            for k in range(cols_a):
+                ergebnis[i][j] += a[i][k] * b[k][j]
+
+    return ergebnis
 
 # Gruppe: German, matthias
 def aufgabe_081_filter_worte_laenge(worte: list[str], minimum: int) -> list[str]:
     """Filtere Wörter, deren Länge mindestens minimum beträgt."""
-    pass
+    return [wort for wort in worte if len(wort) >= minimum]
 
 
 # Gruppe: German, matthias
