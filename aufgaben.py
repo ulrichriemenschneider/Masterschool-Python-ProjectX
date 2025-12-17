@@ -83,73 +83,81 @@ def aufgabe_012_laengstes_wort(worte: list[str]) -> Optional[str]:
 # Gruppe: Saeid, Ulrich
 def aufgabe_013_zaehle_ziffern(text: str) -> int:
     """Zähle alle Zeichen im Text, die Ziffern sind."""
-    pass
+    count = 0
+    for i in text:
+        if i.isdigit():
+            count += 1
+    return count
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_014_entferne_whitespace(text: str) -> str:
     """Entferne alle Whitespaces (Leerzeichen, Tabs, Zeilenumbrüche)."""
-    pass
+    return "".join(text.split())
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_015_slugify(text: str) -> str:
     """Erzeuge einen einfachen Slug: Kleinbuchstaben, '-' statt Leerzeichen."""
-    pass
+    return "-".join(text.lower().split())
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_016_summe_liste(zahlen: list[int]) -> int:
     """Summiere alle Zahlen in der Liste."""
-    pass
+    return sum(zahlen)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_017_mittelwert(zahlen: list[float]) -> float:
     """Berechne den arithmetischen Mittelwert der Liste."""
-    pass
+    return sum(zahlen) / len(zahlen)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_018_max_wert(zahlen: list[int]) -> Optional[int]:
     """Gib den größten Wert zurück, None bei leerer Liste."""
-    pass
+    if not zahlen:
+        return None
+    return max(zahlen)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_019_min_wert(zahlen: list[int]) -> Optional[int]:
     """Gib den kleinsten Wert zurück, None bei leerer Liste."""
-    pass
+    if not zahlen:
+        return None
+    return min(zahlen)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_020_sortiere_aufsteigend(zahlen: list[int]) -> list[int]:
     """Gib eine neue Liste mit aufsteigend sortierten Zahlen zurück."""
-    pass
+    return sorted(zahlen)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_021_sortiere_absteigend(zahlen: list[int]) -> list[int]:
     """Gib eine neue Liste mit absteigend sortierten Zahlen zurück."""
-    pass
+    return sorted(zahlen, reverse=True)
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_022_filter_gerade(zahlen: list[int]) -> list[int]:
     """Filtere alle geraden Zahlen aus der Liste."""
-    pass
+    return [zahl for zahl in zahlen if zahl % 2 == 0]
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_023_filter_ungerade(zahlen: list[int]) -> list[int]:
     """Filtere alle ungeraden Zahlen aus der Liste."""
-    pass
+    return [zahl for zahl in zahlen if zahl % 2 != 0]
 
 
 # Gruppe: Saeid, Ulrich
 def aufgabe_024_quadrate(zahlen: list[int]) -> list[int]:
     """Gib eine Liste mit Quadraten aller Zahlen zurück."""
-    pass
+    return [zahl**2 for zahl in zahlen]
 
 
 # Gruppe: Nikita, Simon
@@ -261,7 +269,9 @@ def aufgabe_042_word_frequency(worte: list[str]) -> dict[str, int]:
 
 
 # Gruppe: Ljubica, Alex
-def aufgabe_043_dict_without_keys(data: dict[str, int], keys: list[str]) -> dict[str, int]:
+def aufgabe_043_dict_without_keys(
+    data: dict[str, int], keys: list[str]
+) -> dict[str, int]:
     """Gib ein neues Dict ohne die angegebenen Schlüssel zurück."""
     pass
 
@@ -351,7 +361,9 @@ def aufgabe_057_kgv(a: int, b: int) -> int:
 
 
 # Gruppe: Murat, Tom, Houssin
-def aufgabe_058_durchschnitt_gewichtet(werte: list[float], gewichte: list[float]) -> float:
+def aufgabe_058_durchschnitt_gewichtet(
+    werte: list[float], gewichte: list[float]
+) -> float:
     """Berechne den gewichteten Mittelwert, gleiche Länge vorausgesetzt."""
     pass
 
@@ -405,7 +417,9 @@ def aufgabe_066_moving_average(werte: list[float], fenster: int) -> list[float]:
 
 
 # Gruppe: Fabienne, Posh, Max
-def aufgabe_067_linear_map(wert: float, alt_min: float, alt_max: float, neu_min: float, neu_max: float) -> float:
+def aufgabe_067_linear_map(
+    wert: float, alt_min: float, alt_max: float, neu_min: float, neu_max: float
+) -> float:
     """Mappe wert linear vom Bereich alt_min..alt_max nach neu_min..neu_max."""
     pass
 
@@ -441,7 +455,9 @@ def aufgabe_072_swap_keys_values(data: dict[str, str]) -> dict[str, str]:
 
 
 # Gruppe: Fabienne, Posh, Max
-def aufgabe_073_filter_dict_by_value(data: dict[str, int], minimum: int) -> dict[str, int]:
+def aufgabe_073_filter_dict_by_value(
+    data: dict[str, int], minimum: int
+) -> dict[str, int]:
     """Filtere Einträge, deren Wert mindestens minimum ist."""
     pass
 
@@ -459,7 +475,9 @@ def aufgabe_075_dict_diff(a: dict[str, int], b: dict[str, int]) -> dict[str, str
 
 
 # Gruppe: German, matthias
-def aufgabe_076_sortiere_tupel_nach_index(eintraege: list[tuple[Any, ...]], index: int = 0) -> list[tuple[Any, ...]]:
+def aufgabe_076_sortiere_tupel_nach_index(
+    eintraege: list[tuple[Any, ...]], index: int = 0
+) -> list[tuple[Any, ...]]:
     """Sortiere eine Liste von Tupeln nach dem angegebenen Index."""
     pass
 
@@ -483,7 +501,9 @@ def aufgabe_079_spaltenmittel(matrix: list[list[float]]) -> list[float]:
 
 
 # Gruppe: German, matthias
-def aufgabe_080_matrix_multiply(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
+def aufgabe_080_matrix_multiply(
+    a: list[list[int]], b: list[list[int]]
+) -> list[list[int]]:
     """Multipliziere zwei Matrizen (gültige Dimensionen vorausgesetzt)."""
     pass
 
@@ -549,7 +569,9 @@ def aufgabe_090_anagramm(text_a: str, text_b: str) -> bool:
 
 
 # Gruppe: schamja, majd, hasmik
-def aufgabe_091_zeichenhaeufigkeit_top(text: str, limit: int = 3) -> list[tuple[str, int]]:
+def aufgabe_091_zeichenhaeufigkeit_top(
+    text: str, limit: int = 3
+) -> list[tuple[str, int]]:
     """Gib die häufigsten Zeichen mitsamt Häufigkeit zurück."""
     pass
 
@@ -606,4 +628,3 @@ def aufgabe_099_parse_kv(text: str) -> dict[str, str]:
 def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
     """Zerlege einen Text in Abschnitte fester Breite."""
     pass
-
